@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <style>
+      #led-circle {
+        width: 50px;
+        height: 50px;
+        background-color: gray;
+        border-radius: 50%;
+        margin-top: 20px;
+      }
+    </style>
+    <script>
+      // Set LED color based on the data attribute
+      function updateRectColor() {
+        const rect = document.getElementById("led-circle");
+        const ledState = rect.getAttribute("data-led-state");
+        rect.style.backgroundColor = ledState === "0" ? "gray" : "blue";
+      }
+
+      // Initialize on page load
+      window.onload = function () {
+        updateRectColor();
+      };
+
+      function toggleLED() {
+        const rect = document.getElementById("led-circle");
+        const currentLEDState = rect.getAttribute("data-led-state") === "0" ? 0 : 1;
+        const newLEDState = currentLEDState === 0 ? 1 : 0;
+
+        fetch(`/led?state=${newLEDState}`)
+          .then((response) => response.json())
+          .then((data) => {
+            rect.setAttribute("data-led-state", data.led_state);
+            updateRectColor();
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <h1>LED Control</h1>
+    <button onclick="toggleLED()">Toggle LED</button>
+    <div id="led-circle" data-led-state="{{LED_STATE}}"></div>
+  </body>
+</html>
