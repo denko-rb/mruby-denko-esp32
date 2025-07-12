@@ -48,9 +48,8 @@ module Denko
       unit = i2cs[index]
       raise ArgumentError, "I2C unit index: #{index} does not exist" unless unit
 
-      register = [register].flatten unless register.class == Array
-
-      # This writes the register bytes first, then reads, in one call.
+      # Write register bytes first, then read, in one call.
+      register = [register].flatten.compact unless register.class == Array
       bytes = unit.read(address, read_length, *register)
 
       # bytes is returned as String. Convert to byte array.
