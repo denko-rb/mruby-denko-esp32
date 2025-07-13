@@ -41,32 +41,122 @@ MRuby::Gem::Specification.new('mruby-denko-esp32') do |spec|
   # Define parts of DigitalIO early. Some interfaces are bit-bang and depend on them.
   DIGITAL_IO_EARLY_FILES.each { |f| spec.rbfiles << "#{denko_lib_dir}/digital_io/#{f[1]}.rb" }
 
-  # Interfaces
-  I2C_FILES.each      { |f| spec.rbfiles << "#{denko_lib_dir}/i2c/#{f[1]}.rb" }
-  SPI_FILES.each      { |f| spec.rbfiles << "#{denko_lib_dir}/spi/#{f[1]}.rb" }
-  # ONE_WIRE_FILES.each { |f| spec.rbfiles << "#{denko_lib_dir}/one_wire/#{f[1]}.rb" }
-  # UART_FILES.each     { |f| spec.rbfiles << "#{denko_lib_dir}/uart/#{f[1]}.rb" }
+  # @rake_populate: OPTIONAL_MODULES_START
 
-  # Basic peripherals first, since others may depend on them.
-  ANALOG_IO_FILES.each  { |f| spec.rbfiles << "#{denko_lib_dir}/analog_io/#{f[1]}.rb" }
-  DIGITAL_IO_FILES.each { |f| spec.rbfiles << "#{denko_lib_dir}/digital_io/#{f[1]}.rb" }
-  PULSE_IO_FILES.each   { |f| spec.rbfiles << "#{denko_lib_dir}/pulse_io/#{f[1]}.rb" }
+  # I2C FILES
+  # spec.rbfiles << "#{denko_lib_dir}/i2c/bus_common.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/i2c/bus.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/i2c/bit_bang.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/i2c/peripheral.rb"
 
-  # Include the two basic LED classes, not everything in LED_FILES
-  spec.rbfiles << "#{denko_lib_dir}/led/base.rb"
-  spec.rbfiles << "#{denko_lib_dir}/led/rgb.rb"
+  # SPI FILES
+  # spec.rbfiles << "#{denko_lib_dir}/spi/bus_common.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/spi/bus.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/spi/bit_bang.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/spi/peripheral.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/spi/base_register.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/spi/input_register.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/spi/output_register.rb"
 
-  # Just AHT sensor for testing I2C.
-  spec.rbfiles << "#{denko_lib_dir}/sensor/helper.rb"
-  spec.rbfiles << "#{denko_lib_dir}/sensor/aht.rb"
+  # ONE_WIRE FILES
+  # spec.rbfiles << "#{denko_lib_dir}/one_wire/constants.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/one_wire/helper.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/one_wire/bus_enumerator.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/one_wire/bus.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/one_wire/peripheral.rb"
 
-  # LED_FILES.each        { |f| spec.rbfiles << "#{denko_lib_dir}/led/#{f[1]}.rb" }
-  # FONT_FILES.each       { |f| spec.rbfiles << "#{denko_lib_dir}/display/font/#{f[1]}.rb" }
-  # DISPLAY_FILES.each    { |f| spec.rbfiles << "#{denko_lib_dir}/display/#{f[1]}.rb" }
-  # EEPROM_FILES.each     { |f| spec.rbfiles << "#{denko_lib_dir}/eeprom/#{f[1]}.rb" }
-  # MOTOR_FILES.each      { |f| spec.rbfiles << "#{denko_lib_dir}/motor/#{f[1]}.rb" }
-  # RTC_FILES.each        { |f| spec.rbfiles << "#{denko_lib_dir}/rtc/#{f[1]}.rb" }
-  # SENSOR_FILES.each     { |f| spec.rbfiles << "#{denko_lib_dir}/sensor/#{f[1]}.rb" }
+  # UART FILES
+  # spec.rbfiles << "#{denko_lib_dir}/uart/common.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/uart/hardware.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/uart/bit_bang.rb"
+
+  # ANALOG_IO FILES
+  # spec.rbfiles << "#{denko_lib_dir}/analog_io/input_helper.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/analog_io/input.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/analog_io/output.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/analog_io/potentiometer.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/analog_io/joystick.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/analog_io/ads111x.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/analog_io/ads1100.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/analog_io/ads1115.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/analog_io/ads1118.rb"
+
+  # DIGITAL_IO FILES
+  # spec.rbfiles << "#{denko_lib_dir}/digital_io/input.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/digital_io/output.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/digital_io/button.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/digital_io/relay.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/digital_io/rotary_encoder.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/digital_io/pcf8574.rb"
+
+  # PULSE_IO FILES
+  # spec.rbfiles << "#{denko_lib_dir}/pulse_io/pwm_output.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/pulse_io/buzzer.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/pulse_io/ir_output.rb"
+
+  # LED_FILES FILES
+  # spec.rbfiles << "#{denko_lib_dir}/led_files/base.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led_files/rgb.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led_files/seven_segment.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led_files/ws2812.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led_files/apa102.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led_files/tm1637.rb"
+
+  # DISPLAY/FONT FILES
+  # spec.rbfiles << "#{denko_lib_dir}/display/font/bmp_5x7.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/font/bmp_6x8.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/font/bmp_8x16.rb"
+
+  # DISPLAY FILES
+  # spec.rbfiles << "#{denko_lib_dir}/display/hd44780.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/pixel_common.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/spi_common.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/spi_epaper_common.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/canvas.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/mono_oled.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/ssd1306.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/sh1106.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/sh1107.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/pcd8544.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/st7302.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/st7565.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/il0373.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/ssd168x.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/ssd1680.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/display/ssd1681.rb"
+
+  # EEPROM FILES
+  # spec.rbfiles << "#{denko_lib_dir}/eeprom/board.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/eeprom/at24c.rb"
+
+  # MOTOR FILES
+  # spec.rbfiles << "#{denko_lib_dir}/motor/servo.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/motor/a3967.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/motor/l298.rb"
+
+  # RTC FILES
+  # spec.rbfiles << "#{denko_lib_dir}/rtc/ds3231.rb"
+
+  # SENSOR FILES
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/helper.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/dht.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/ds18b20.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/bmp180.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/bme280.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/hdc1080.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/htu21d.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/htu31d.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/aht.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/sht3x.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/sht4x.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/qmp6988.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/rcwl9620.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/hcsr04.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/jsnsr04t.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/generic_pir.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/sensor/vl53l0x.rb"
+
+  # @rake_populate: OPTIONAL_MODULES_END
 
   # Deal with multiple classes adding the same file.
   spec.rbfiles.uniq!
