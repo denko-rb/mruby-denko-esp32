@@ -139,4 +139,6 @@ MRuby::CrossBuild.new('esp32') do |conf|
 
   # ESP32 implementation of Denko::Board
   conf.gem "#{__dir__}/mrbgems/mruby-denko-esp32"
+  # C optimized methods for Denko::Canvas on mruby
+  conf.gem github: "denko-rb/mruby-denko-fastcanvas"
 end
