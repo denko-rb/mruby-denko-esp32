@@ -6,7 +6,7 @@
 
 #include <esp_rom_sys.h>
 
-#include "../../../picoruby/mrbgems/picoruby-gpio/ports/esp32/gpio.c"
+#include "../../../picoruby/mrbgems/picoruby-gpio/include/gpio.h"
 
 static mrb_value
 denko_board_digital_write(mrb_state* mrb, mrb_value self) {
