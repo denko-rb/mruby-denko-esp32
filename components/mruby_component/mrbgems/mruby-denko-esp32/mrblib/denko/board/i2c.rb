@@ -41,7 +41,7 @@ module Denko
       bytes = [bytes].flatten unless bytes.class == Array
       raise ArgumentError, "exceeded #{i2c_limit} bytes for #i2c_write" if bytes.length > i2c_limit
 
-      result = unit.write(address, *bytes)
+      result = unit._write(index, address, bytes, repeated_start, 100)
     end
 
     def i2c_read(index, address, register, read_length, frequency=100_000, repeated_start=false)
