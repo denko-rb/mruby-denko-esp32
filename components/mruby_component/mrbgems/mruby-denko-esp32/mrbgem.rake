@@ -13,11 +13,14 @@ MRuby::Gem::Specification.new('mruby-denko-esp32') do |spec|
   spec.version = Denko::Board::VERSION
 
   # BCD conversion dependency for RTCs
-  spec.add_dependency('ruby_bcd', github: "dafyddcrosby/ruby_bcd", branch: "main")
+  spec.add_dependency 'ruby_bcd', github: "dafyddcrosby/ruby_bcd", branch: "main"
 
   # ESP32 system gem always included. Wi-Fi and MQTT are handled in build config.
-  spec.add_dependency('mruby-esp32-system', github: "mruby-esp32/mruby-esp32-system")
+  spec.add_dependency 'mruby-esp32-system', github: "mruby-esp32/mruby-esp32-system"
 
+  # For PicoRuby gem headers.
+  spec.add_dependency 'picoruby-gpio'
+  
   # Important to redefine spec.rbfiles so load order is explicit.
   spec.rbfiles = []
 

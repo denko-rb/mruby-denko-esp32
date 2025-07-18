@@ -1,15 +1,12 @@
 [submodule "components/esp_littlefs"]
 	path = components/esp_littlefs
 	url = https://github.com/joltwallet/esp_littlefs.git
-	fetchRecurseSubmodules = true
 [submodule "components/mruby_component/mruby"]
 	path = components/mruby_component/mruby
 	url = https://github.com/denko-rb/mruby.git
-	fetchRecurseSubmodules = true
 [submodule "components/mruby_component/picoruby"]
 	path = components/mruby_component/picoruby
 	url = https://github.com/picoruby/picoruby.git
-	fetchRecurseSubmodules = true
 [submodule "components/mruby_component/mrbgems/mruby-denko-esp32/lib/denko"]
 	path = components/mruby_component/mrbgems/mruby-denko-esp32/lib/denko
 	url = https://github.com/denko-rb/denko.git
