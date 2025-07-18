@@ -142,4 +142,7 @@ MRuby::CrossBuild.new('esp32') do |conf|
 
   # C optimized methods for Denko::Canvas on mruby
   conf.gem github: "denko-rb/mruby-denko-fastcanvas"
+
+  # C optimized methods for GPIO, I2C, and SPI writes, to speed up Display drawing.
+  # conf.gem "#{__dir__}/mrbgems/mruby-denko-esp32/mrbgems/mruby-denko-fastio"
 end
