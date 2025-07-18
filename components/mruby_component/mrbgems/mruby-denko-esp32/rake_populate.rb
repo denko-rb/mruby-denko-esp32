@@ -16,7 +16,7 @@ pairs = [
   {folder: "analog_io",     arr: ANALOG_IO_FILES},
   {folder: "digital_io",    arr: DIGITAL_IO_FILES},
   {folder: "pulse_io",      arr: PULSE_IO_FILES},
-  {folder: "led_files",     arr: LED_FILES},
+  {folder: "led",           arr: LED_FILES},
   {folder: "display/font",  arr: FONT_FILES},
   {folder: "display",       arr: DISPLAY_FILES},
   {folder: "eeprom",        arr: EEPROM_FILES},

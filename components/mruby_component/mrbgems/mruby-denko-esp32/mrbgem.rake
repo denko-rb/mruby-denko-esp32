@@ -80,15 +80,15 @@ MRuby::Gem::Specification.new('mruby-denko-esp32') do |spec|
   # spec.rbfiles << "#{denko_lib_dir}/pulse_io/pwm_output.rb"
   # spec.rbfiles << "#{denko_lib_dir}/pulse_io/buzzer.rb"
 
-  # LED_FILES FILES
-  # spec.rbfiles << "#{denko_lib_dir}/led_files/base.rb"
-  # spec.rbfiles << "#{denko_lib_dir}/led_files/rgb.rb"
-  # spec.rbfiles << "#{denko_lib_dir}/led_files/seven_segment.rb"
-  # spec.rbfiles << "#{denko_lib_dir}/led_files/seven_segment_array.rb"
-  # spec.rbfiles << "#{denko_lib_dir}/led_files/seven_segment_spi.rb"
-  # spec.rbfiles << "#{denko_lib_dir}/led_files/tm163x.rb"
-  # spec.rbfiles << "#{denko_lib_dir}/led_files/tm1637.rb"
-  # spec.rbfiles << "#{denko_lib_dir}/led_files/tm1638.rb"
+  # LED FILES
+  # spec.rbfiles << "#{denko_lib_dir}/led/base.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led/rgb.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led/seven_segment.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led/seven_segment_array.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led/seven_segment_spi.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led/tm163x.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led/tm1637.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/led/tm1638.rb"
 
   # DISPLAY/FONT FILES
   # spec.rbfiles << "#{denko_lib_dir}/display/font/bmp_5x7.rb"
