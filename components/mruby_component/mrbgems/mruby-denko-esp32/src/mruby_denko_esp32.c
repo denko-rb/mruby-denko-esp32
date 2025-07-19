@@ -7,6 +7,7 @@
 #include <esp_rom_sys.h>
 // From picoruby/mrbgems
 #include <gpio.h>
+#include <adc.h>
 
 static mrb_value
 denko_board_digital_write(mrb_state* mrb, mrb_value self) {
@@ -25,6 +26,16 @@ denko_board_digital_read_raw(mrb_state* mrb, mrb_value self) {
 
   // From picoruby-gpio esp32 port
   state = GPIO_read(pin);
+  return mrb_fixnum_value(state);
+}
+
+static mrb_value
+denko_board_analog_read_raw(mrb_state* mrb, mrb_value self) {
+  mrb_int pin, state;
+  mrb_get_args(mrb, "i", &pin);
+
+  // From picoruby-adc esp32 port
+  state = ADC_read_raw(pin);
   return mrb_fixnum_value(state);
 }
 
@@ -50,6 +61,9 @@ mrb_mruby_denko_esp32_gem_init(mrb_state* mrb) {
   // DigitalIO
   mrb_define_method(mrb, mrb_Denko_Board, "digital_write",    denko_board_digital_write,    MRB_ARGS_REQ(2));
   mrb_define_method(mrb, mrb_Denko_Board, "digital_read_raw", denko_board_digital_read_raw, MRB_ARGS_REQ(1));
+
+  // AnalogIO
+  mrb_define_method(mrb, mrb_Denko_Board, "analog_read_raw",  denko_board_analog_read_raw,  MRB_ARGS_REQ(1));
 }
 
 void
