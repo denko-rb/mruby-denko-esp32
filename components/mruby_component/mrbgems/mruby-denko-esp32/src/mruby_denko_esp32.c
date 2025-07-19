@@ -19,7 +19,7 @@ denko_board_digital_write(mrb_state* mrb, mrb_value self) {
 }
 
 static mrb_value
-denko_board__digital_read(mrb_state* mrb, mrb_value self) {
+denko_board_digital_read_raw(mrb_state* mrb, mrb_value self) {
   mrb_int pin, state;
   mrb_get_args(mrb, "i", &pin);
 
@@ -48,8 +48,8 @@ mrb_mruby_denko_esp32_gem_init(mrb_state* mrb) {
   mrb_define_method(mrb, mrb_Denko_Board, "micro_delay",    denko_board_micro_delay,    MRB_ARGS_REQ(1));
 
   // DigitalIO
-  mrb_define_method(mrb, mrb_Denko_Board, "digital_write", denko_board_digital_write,  MRB_ARGS_REQ(2));
-  mrb_define_method(mrb, mrb_Denko_Board, "_digital_read", denko_board__digital_read,  MRB_ARGS_REQ(1));
+  mrb_define_method(mrb, mrb_Denko_Board, "digital_write",    denko_board_digital_write,    MRB_ARGS_REQ(2));
+  mrb_define_method(mrb, mrb_Denko_Board, "digital_read_raw", denko_board_digital_read_raw, MRB_ARGS_REQ(1));
 }
 
 void

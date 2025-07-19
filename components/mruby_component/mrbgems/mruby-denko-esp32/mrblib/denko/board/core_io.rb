@@ -40,11 +40,16 @@ module Denko
     # digital_write implemented in C
 
     def digital_read(pin)
-      self.update(pin, _digital_read(pin))
+      self.update(pin, digital_read_raw(pin))
     end
 
     def pwm_write(pin, duty)
       pwms[pin].pulse_width_us((duty / 1000.0).round)
+    end
+
+    def analog_read_raw(pin, negative_pin=nil, gain=nil, sample_rate=nil)
+      adcs[pin] ||= ADC.new(pin)
+      adcs[pin].read_raw
     end
 
     def analog_read(pin, negative_pin=nil, gain=nil, sample_rate=nil)
