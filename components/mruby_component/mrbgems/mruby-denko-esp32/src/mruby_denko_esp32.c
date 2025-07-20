@@ -21,22 +21,18 @@ denko_board_digital_write(mrb_state* mrb, mrb_value self) {
 
 static mrb_value
 denko_board_digital_read_raw(mrb_state* mrb, mrb_value self) {
-  mrb_int pin, state;
+  mrb_int pin;
   mrb_get_args(mrb, "i", &pin);
-
-  // From picoruby-gpio esp32 port
-  state = GPIO_read(pin);
-  return mrb_fixnum_value(state);
+  // From picoruby-gpio
+  return mrb_fixnum_value(GPIO_read(pin));
 }
 
 static mrb_value
 denko_board_analog_read_raw(mrb_state* mrb, mrb_value self) {
-  mrb_int pin, state;
+  mrb_int pin;
   mrb_get_args(mrb, "i", &pin);
-
-  // From picoruby-adc esp32 port
-  state = ADC_read_raw(pin);
-  return mrb_fixnum_value(state);
+  // From picoruby-adc
+  return mrb_fixnum_value(ADC_read_raw(pin));
 }
 
 static mrb_value
