@@ -21,7 +21,7 @@ MRuby::Gem::Specification.new('mruby-denko-esp32') do |spec|
   # For PicoRuby gem headers.
   spec.add_dependency 'picoruby-gpio'
   spec.add_dependency 'picoruby-adc'
-  
+
   # Important to redefine spec.rbfiles so load order is explicit.
   spec.rbfiles = []
 
@@ -35,6 +35,9 @@ MRuby::Gem::Specification.new('mruby-denko-esp32') do |spec|
   spec.rbfiles << "#{denko_lib_dir}/version.rb"
   HELPER_FILES.each    { |f| spec.rbfiles << "#{denko_lib_dir}/helpers/#{f[1]}.rb" }
   BEHAVIORS_FILES.each { |f| spec.rbfiles << "#{denko_lib_dir}/behaviors/#{f[1]}.rb" }
+
+  # Optimized Behaviors::Reader since mruby doesn't have threads (from this mrbgem).
+  spec.rbfiles << "#{dir}/mrblib/denko/behaviors/reader.rb"
 
   # Denko::Board implementation (from this mrbgem)
   spec.rbfiles += Dir.glob("#{dir}/mrblib/denko/board/*")
