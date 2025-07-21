@@ -1,6 +1,6 @@
 module Denko
   class Board
-    INPUT_MODES  = [:input, :input_pullup, :input_pulldown]
+    INPUT_MODES  = [:input, :input_pullup, :input_pulldown, :input_adc]
     OUTPUT_MODES = [:output, :output_pwm]
     PIN_MODES = INPUT_MODES + OUTPUT_MODES
 
@@ -18,6 +18,8 @@ module Denko
       when :input_pulldown
         gpios[pin] = GPIO.new(pin, GPIO::IN)
         gpios[pin].set_pull(GPIO::PULL_DOWN)
+      when :input_adc
+        adcs[pin] ||= ADC.new(pin)
       when :output
         gpios[pin] = GPIO.new(pin, GPIO::OUT)
       when :output_pwm
@@ -39,22 +41,22 @@ module Denko
 
     # digital_write implemented in C
 
+    # dgital_read_raw implemented in C
+
     def digital_read(pin)
       self.update(pin, digital_read_raw(pin))
     end
 
     def pwm_write(pin, duty)
-      pwms[pin].pulse_width_us((duty / 1000.0).round)
+      @pwms[pin].pulse_width_us((duty / 1000.0).round)
     end
 
     def analog_read_raw(pin, negative_pin=nil, gain=nil, sample_rate=nil)
-      adcs[pin] ||= ADC.new(pin)
-      adcs[pin].read_raw
+      @adcs[pin].read_raw
     end
 
     def analog_read(pin, negative_pin=nil, gain=nil, sample_rate=nil)
-      adcs[pin] ||= ADC.new(pin)
-      self.update(pin, adcs[pin].read_raw)
+      self.update(pin, @adcs[pin].read_raw)
     end
 
     def set_listener(pin, state=:off, **options)
