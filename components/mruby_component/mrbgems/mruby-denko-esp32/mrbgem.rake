@@ -21,6 +21,7 @@ MRuby::Gem::Specification.new('mruby-denko-esp32') do |spec|
   # For PicoRuby gem headers.
   spec.add_dependency 'picoruby-gpio'
   spec.add_dependency 'picoruby-adc'
+  spec.add_dependency 'picoruby-pwm'
 
   # Important to redefine spec.rbfiles so load order is explicit.
   spec.rbfiles = []

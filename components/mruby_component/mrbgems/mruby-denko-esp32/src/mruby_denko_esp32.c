@@ -8,6 +8,7 @@
 // From picoruby/mrbgems
 #include <gpio.h>
 #include <adc.h>
+#include <pwm.h>
 
 static mrb_value
 denko_board_digital_write(mrb_state* mrb, mrb_value self) {
@@ -43,6 +44,14 @@ denko_board_micro_delay(mrb_state *mrb, mrb_value self) {
   return self;
 }
 
+static mrb_value
+denko_board_pwm_enable(mrb_state *mrb, mrb_value self) {
+  mrb_int pin;
+  mrb_bool state;
+  mrb_get_args(mrb, "ib", &pin, &state);
+  PWM_set_enabled(pin, state);
+  return self;
+}
 void
 mrb_mruby_denko_esp32_gem_init(mrb_state* mrb) {
   // Denko module
@@ -60,6 +69,9 @@ mrb_mruby_denko_esp32_gem_init(mrb_state* mrb) {
 
   // AnalogIO
   mrb_define_method(mrb, mrb_Denko_Board, "analog_read_raw",  denko_board_analog_read_raw,  MRB_ARGS_REQ(1));
+
+  // PulseIO
+  mrb_define_method(mrb, mrb_Denko_Board, "pwm_enable",       denko_board_pwm_enable,       MRB_ARGS_REQ(2));
 }
 
 void
