@@ -60,7 +60,7 @@ MRuby::Gem::Specification.new('mruby-denko-esp32') do |spec|
   # spec.rbfiles << "#{denko_lib_dir}/spi/bus_common.rb"
   # spec.rbfiles << "#{denko_lib_dir}/spi/bus.rb"
   # spec.rbfiles << "#{denko_lib_dir}/spi/peripheral.rb"
-  # spec.rbfiles << "#{denko_lib_dir}/spi/base_register.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/spi/register.rb"
   # spec.rbfiles << "#{denko_lib_dir}/spi/input_register.rb"
   # spec.rbfiles << "#{denko_lib_dir}/spi/output_register.rb"
 
@@ -69,6 +69,7 @@ MRuby::Gem::Specification.new('mruby-denko-esp32') do |spec|
   # spec.rbfiles << "#{denko_lib_dir}/analog_io/input.rb"
   # spec.rbfiles << "#{denko_lib_dir}/analog_io/potentiometer.rb"
   # spec.rbfiles << "#{denko_lib_dir}/analog_io/joystick.rb"
+  # spec.rbfiles << "#{denko_lib_dir}/analog_io/adkeyboard.rb"
   # spec.rbfiles << "#{denko_lib_dir}/analog_io/ads111x.rb"
   # spec.rbfiles << "#{denko_lib_dir}/analog_io/ads1100.rb"
   # spec.rbfiles << "#{denko_lib_dir}/analog_io/ads1115.rb"
