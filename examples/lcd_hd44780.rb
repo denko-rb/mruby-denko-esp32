@@ -15,18 +15,27 @@ heart = [ 0b00000,
           0b01110,
           0b00100,
           0b00000 ]
-                  
+
 # Define the character in CGRAM address 2. 0-7 are usable.
 lcd.create_char(2, heart)
 
-# Need to call home/clear/set_cursor so we go back to writing DDRAM.
+# Need to call home/clear/text_cursor so we go back to writing DDRAM.
 lcd.home
 
 # End the first line with the heart by writing its CGRAM address.
-lcd.print "Hello World!   "
+lcd.text "Hello World!   "
 lcd.write(2)
 
-# Sleep forever.
+# Change backlight, if it was given in pins: hash, and connected to a PWM pin:
+# lcd.backlight.duty = 50
+#
+# Or just toggle if connected to a digital pin:
+# lcd.backlight.on
+# lcd.backlight.off
+
+# Display a clock on second line, updating approximately every second.
 loop do
-  sleep(1)
+  lcd.text_cursor 0,1
+  lcd.text(Time.now.strftime("%I:%M:%S"))
+  sleep 1
 end
