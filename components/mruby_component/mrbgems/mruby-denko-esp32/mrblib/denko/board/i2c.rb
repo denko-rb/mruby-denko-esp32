@@ -26,7 +26,7 @@ module Denko
       found = [0]
       I2C_ADDRESS_RANGE.each do |address|
         begin
-          bytes = unit.read(address, 1)
+          bytes = unit.read(address, 1, timeout: 100)
           found << address if bytes[0].ord > 0
         rescue IOError
         end
@@ -41,7 +41,7 @@ module Denko
       bytes = [bytes].flatten unless bytes.class == Array
       raise ArgumentError, "exceeded #{i2c_limit} bytes for #i2c_write" if bytes.length > i2c_limit
 
-      result = unit._write(index, address, bytes, repeated_start, 100)
+      unit.write(address, bytes, nostop: repeated_start, timeout: 100)
     end
 
     def i2c_read(index, address, register, read_length, frequency=100_000, repeated_start=false)
@@ -50,7 +50,7 @@ module Denko
 
       # Write register bytes first, then read, in one call.
       register = [register].flatten.compact unless register.class == Array
-      bytes = unit.read(address, read_length, *register)
+      bytes = unit.read(address, read_length, *register, timeout: 100)
 
       # bytes is returned as String. Convert to byte array.
       byte_array = bytes.unpack("C*")

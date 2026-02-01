@@ -12,12 +12,12 @@ module Denko
       # These are default pins Arduino uses for ESP32 S3.
       # Some may have :ESP32_VSPI_HOST, aka :SPI3_HOST
       hspi = ::SPI.new  unit:      :ESP32_HSPI_HOST,
-                        frequency: 1_000_000,
+                        frequency: 10_000_000,
                         sck_pin:   12,
                         cipo_pin:  13,
                         copi_pin:  11,
                         mode:      0,
-                        first_bit: 1
+                        first_bit: ::SPI::MSB_FIRST
       @spis = [hspi]
     end
 

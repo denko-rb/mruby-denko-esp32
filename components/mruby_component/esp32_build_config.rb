@@ -1,3 +1,9 @@
+# Workaround for spec.posix calls in picorby gems' mrbgem.rake
+class MRuby::Gem::Specification
+  def posix
+  end
+end
+
 MRuby::Build.new do |conf|
   toolchain :gcc
 
