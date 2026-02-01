@@ -8,7 +8,8 @@ module Denko
     end
 
     def no_tone(pin)
-      pwm_enable(pin, false)
+      @pwms[pin].period_us(1000)
+      @pwms[pin].pulse_width_us(1000)
     end
   end
 end
