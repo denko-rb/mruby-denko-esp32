@@ -1,0 +1,3 @@
+[submodule "lib/denko"]
+	path = lib/denko
+	url = https://github.com/denko-rb/denko.git
